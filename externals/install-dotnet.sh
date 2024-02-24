@@ -1372,6 +1372,9 @@ generate_akams_links() {
 
         #  Check if the SDK version is already installed.
         if [[ "$dry_run" != true ]] && is_dotnet_package_installed "$install_root" "$asset_relative_path" "$effective_version"; then
+            say "$install_root"
+            say "$asset_relative_path"
+            say "$effective_version"
             say "$asset_name with version '$effective_version' is already installed."
             exit 0
         fi
@@ -1430,6 +1433,9 @@ generate_regular_links() {
 
     #  Check if the SDK version is already installed.
     if [[ "$dry_run" != true ]] && is_dotnet_package_installed "$install_root" "$asset_relative_path" "$effective_version"; then
+        say "$install_root"
+        say "$asset_relative_path"
+        say "$effective_version"
         say "$asset_name with version '$effective_version' is already installed."
         exit 0
     fi
