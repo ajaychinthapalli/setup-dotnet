@@ -1372,9 +1372,9 @@ generate_akams_links() {
 
         #  Check if the SDK version is already installed.
         if [[ "$dry_run" != true ]] && is_dotnet_package_installed "$install_root" "$asset_relative_path" "$effective_version"; then
-            say "$install_root"
-            say "$asset_relative_path"
-            say "$effective_version"
+            say "install_root: " $install_root
+            say "asset_relative_path: " $asset_relative_path
+            say "effective_version: " $effective_version
             say "$asset_name with version '$effective_version' is already installed."
             exit 0
         fi
@@ -1433,9 +1433,9 @@ generate_regular_links() {
 
     #  Check if the SDK version is already installed.
     if [[ "$dry_run" != true ]] && is_dotnet_package_installed "$install_root" "$asset_relative_path" "$effective_version"; then
-        say "$install_root"
-        say "$asset_relative_path"
-        say "$effective_version"
+        say "install_root: " $install_root
+        say "asset_relative_path: " $asset_relative_path
+        say "effective_version: " $effective_version
         say "$asset_name with version '$effective_version' is already installed."
         exit 0
     fi
@@ -1507,6 +1507,7 @@ calculate_vars() {
 
 install_dotnet() {
     eval $invocation
+    say "invocation: " $invocation
     local download_failed=false
     local download_completed=false
     local remote_file_size=0
@@ -1518,9 +1519,13 @@ install_dotnet() {
     for link_index in "${!download_links[@]}"
     do
         download_link="${download_links[$link_index]}"
+        say "download_link: " download_link
         specific_version="${specific_versions[$link_index]}"
+        say "specific_version: " specific_version
         effective_version="${effective_versions[$link_index]}"
+        say "effective_version: " effective_version
         link_type="${link_types[$link_index]}"
+        say "link_type: " link_type
 
         say "Attempting to download using $link_type link $download_link"
 
